@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>05 Anim</title>
+        <!-- 引入 layui.css -->
+        <link rel="stylesheet" href="../layui/css/layui.css" media="all">
+        <link rel="stylesheet" href="../layui/global.css">
+        <style>
+            .site-doc-icon li {
+                width: 50%;
+            }
+
+            .site-doc-icon li .layui-anim {
+                width: 125px;
+                height: 125px;
+                line-height: 125px;
+                margin: 0 auto 10px;
+                text-align: center;
+                background-color: #009688;
+                cursor: pointer;
+                color: #fff;
+                border-radius: 50%;
+            }
+
+            .site-doc-icon li .code {
+                white-space: nowrap;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="layui-container layui-row">
+            <blockquote class="layui-elem-quote">
+                在实用价值的前提之下，我们并没有内置过多花俏的动画。而他们同样在 layui 的许多交互元素中，发挥着重要的作用。layui 的动画全部采用 CSS3，因此不支持 ie8 和部分不支持 ie9。
+            </blockquote>
+            <fieldset class="layui-elem-field layui-field-title site-title">
+                <legend><a name="css3">内置CSS3动画一览表</a></legend>
+            </fieldset>
+            <div class="site-text">
+                <p>下面是不同的动画类名，点击下述绿色块，可直接预览动画</p>
+            </div>
+            <div class="layui-col-md9 site-content">
+                <ul class="layui-border-box site-doc-icon site-doc-anim">
+                    <li>
+                        <div class="layui-anim layui-anim-down" data-anim="layui-anim-down">顶部往下滑入</div>
+                        <div class="code">layui-anim-down</div>
+                    </li>
+                    <li>
+                        <div class="layui-anim layui-anim-downbit" data-anim="layui-anim-downbit">微微往下滑入</div>
+                        <div class="code">layui-anim-downbit</div>
+                    </li>
+                    <li>
+                        <div class="layui-anim layui-anim-up" data-anim="layui-anim-up">底部往上滑入</div>
+                        <div class="code">layui-anim-up</div>
+                    </li>
+                    <li>
+                        <div class="layui-anim layui-anim-upbit" data-anim="layui-anim-upbit">微微往上滑入</div>
+                        <div class="code">layui-anim-upbit</div>
+                    </li>
+                    <li>
+                        <div class="layui-anim layui-anim-scale" data-anim="layui-anim-scale">平滑放大</div>
+                        <div class="code">layui-anim-scale</div>
+                    </li>
+                    <li>
+                        <div class="layui-anim layui-anim-scaleSpring" data-anim="layui-anim-scaleSpring">弹簧式放大</div>
+                        <div class="code">layui-anim-scaleSpring</div>
+                    </li>
+                    <li>
+                        <div class="layui-anim layui-anim-scalesmall" data-anim="layui-anim-scalesmall">平滑放小</div>
+                        <div class="code">layui-anim-scalesmall</div>
+                    </li>
+                    <li>
+                        <div class="layui-anim layui-anim-scalesmall-spring" data-anim="layui-anim-scalesmall-spring">
+                            弹簧式放小
+                        </div>
+                        <div class="code">layui-anim-scalesmall-spring</div>
+                    </li>
+                    <li>
+                        <div class="layui-anim layui-anim-fadein" data-anim="layui-anim-fadein">渐现</div>
+                        <div class="code">layui-anim-fadein</div>
+                    </li>
+                    <li>
+                        <div class="layui-anim" data-anim="layui-anim-fadeout">渐隐</div>
+                        <div class="code">layui-anim-fadeout</div>
+                    </li>
+                    <li>
+                        <div class="layui-anim layui-anim-rotate" data-anim="layui-anim-rotate">360度旋转</div>
+                        <div class="code">layui-anim-rotate</div>
+                    </li>
+                    <li>
+                        <div class="layui-anim" data-anim="layui-anim-rotate layui-anim-loop">循环动画</div>
+                        <div class="code">追加：layui-anim-loop</div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <!-- 引入 layui.layui -->
+        <script src="../layui/layui.js" charset="UTF-8"></script>
+        <script>
+            layui.use('jquery', function(){
+                var $ = layui.$;
+
+                //演示动画
+                $('.site-doc-icon .layui-anim').on('click', function(){
+                    var othis = $(this), anim = othis.data('anim');
+
+                    //停止循环
+                    if(othis.hasClass('layui-anim-loop')){
+                        return othis.removeClass(anim);
+                    }
+
+                    othis.removeClass(anim);
+
+                    setTimeout(function(){
+                        othis.addClass(anim);
+                    });
+                    //恢复渐隐
+                    if(anim === 'layui-anim-fadeout'){
+                        setTimeout(function(){
+                            othis.removeClass(anim);
+                        }, 1300);
+                    }
+                });
+            });
+        </script>
+    </body>
+</html>
